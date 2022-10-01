@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/svojs/static/css/main.c7a1b48a.css",
+    "main.js": "/svojs/static/js/main.c33000ed.js",
+    "static/media/svojs.png": "/svojs/static/media/svojs.24f9119906c119670b40.png",
+    "index.html": "/svojs/index.html",
+    "main.c7a1b48a.css.map": "/svojs/static/css/main.c7a1b48a.css.map",
+    "main.c33000ed.js.map": "/svojs/static/js/main.c33000ed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c7a1b48a.css",
+    "static/js/main.c33000ed.js"
+  ]
+}
