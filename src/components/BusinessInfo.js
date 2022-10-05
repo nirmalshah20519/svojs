@@ -178,7 +178,7 @@ const BusinessInfo = (props) => {
                         <Button style={{ float: 'left' }} onClick={handlePrev} >Previous</Button>
                     </Form.Group>
                     <Form.Group as={Col} md="6">
-                        <Button type='submit' style={{ float: 'right' }}>Next</Button>
+                        <Button type='submit' style={{ float: 'right' }}>Submit</Button>
                     </Form.Group>
                 </Row>
             </Form>
