@@ -13,7 +13,7 @@ const Header = () => {
                         width='60'
                         height='60' />
                     &nbsp;
-                    SVOJS Member Registration
+                    SVOJS New Member Registration
                 </h4>
             </nav>
         </>

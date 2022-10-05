@@ -11,7 +11,8 @@ const ContactInfo = (props) => {
         ContactNo:"",
         PhoneNo:"",
         Email:"",
-        Address:"",
+        Address1:"",
+        Address2:"",
         PinCode:"",
         City:"",
         Vibhag:""
@@ -19,13 +20,13 @@ const ContactInfo = (props) => {
     const [contactData, setContactData] = useState(initialData);
 
     const [contactNo, setContactNo]=useState(false)
-    const [phoneNo, setPhoneNo]=useState(false)
+    // const [phoneNo, setPhoneNo]=useState(false)
     const [email, setEmail]=useState(false)
     const [pincode, setPincode]=useState(false)
 
     const validateData=()=>{
-        if(contactData.ContactNo.length!==10 || isNaN(contactData.ContactNo) ||
-            contactData.PhoneNo.length!==10 || isNaN(contactData.PhoneNo) ||
+        if(contactData.ContactNo.length!==10 || isNaN(contactData.ContactNo) || /*contactData.PhoneNo.length!==0||
+             contactData.PhoneNo.length!==10 ||isNaN(contactData.PhoneNo) ||*/
             !(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(contactData.Email))||
             contactData.PinCode.length!==6 || isNaN(contactData.PinCode))
             {
@@ -33,9 +34,9 @@ const ContactInfo = (props) => {
                     setContactNo(true)
                 }else{setContactNo(false)}
 
-                if(contactData.PhoneNo.length!==10 || isNaN(contactData.PhoneNo)){
-                    setPhoneNo(true)
-                }else{setPhoneNo(false)}
+                // if(contactData.PhoneNo.length!==0 || contactData.PhoneNo.length!==10 || isNaN(contactData.PhoneNo)){
+                //     setPhoneNo(true)
+                // }else{setPhoneNo(false)}
 
                 if(!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(contactData.Email))){
                     setEmail(true)
@@ -95,13 +96,12 @@ const ContactInfo = (props) => {
                     <Form.Group as={Col} md="4">
                         <Form.Label>Phone No</Form.Label>
                         <Form.Control
-                            required
                             type="text"
                             name="PhoneNo"
                             placeholder="Phone No"
                             value={contactData.PhoneNo}
                             onChange={handleChange}
-                            isInvalid={phoneNo}
+                            // isInvalid={phoneNo}
                         />
                         <Form.Control.Feedback type="invalid">
                             Please enter a valid phone no.
@@ -124,14 +124,28 @@ const ContactInfo = (props) => {
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
-                    <Form.Group as={Col} md="12">
-                        <Form.Label>Address</Form.Label>
+                    <Form.Group as={Col} md="6">
+                        <Form.Label>Address Line 1</Form.Label>
                         <Form.Control
                             required
                             type="text"
-                            name="Address"
-                            placeholder="Address"
-                            value={contactData.Address}
+                            name="Address1"
+                            placeholder="Address Line 1"
+                            value={contactData.Address1}
+                            onChange={handleChange}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Please enter a valid Address.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6">
+                        <Form.Label>Address Line 2</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="Address2"
+                            placeholder="Address Line 2"
+                            value={contactData.Address2}
                             onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
@@ -141,6 +155,20 @@ const ContactInfo = (props) => {
                     
                 </Row>
                 <Row className="mb-3">
+                <Form.Group as={Col} md="4">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            name="City"
+                            placeholder="City"
+                            value={contactData.City}
+                            onChange={handleChange}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Please enter your city.
+                        </Form.Control.Feedback>
+                    </Form.Group>
                 <Form.Group as={Col} md="4">
                         <Form.Label>Pin Code</Form.Label>
                         <Form.Control
@@ -156,20 +184,7 @@ const ContactInfo = (props) => {
                             Please enter a valid pincode.
                         </Form.Control.Feedback>
                     </Form.Group>
-                <Form.Group as={Col} md="4">
-                        <Form.Label>City</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            name="City"
-                            placeholder="City"
-                            value={contactData.City}
-                            onChange={handleChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Please enter your city.
-                        </Form.Control.Feedback>
-                    </Form.Group>
+                
                     <Form.Group as={Col} md="4">
                         <Form.Label>Vibhag</Form.Label>
                         <Form.Select required name='Vibhag' value={contactData.Vibhag} onChange={handleChange}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -7,13 +7,31 @@ import Row from 'react-bootstrap/Row';
 const BusinessInfo = (props) => {
 
     const [validated, setValidated] = useState(false);
+    const [business, setBusiness]=useState(false)
+    const [mediclaim, setMediclaim]=useState(false)
+   
     const initialData = {
         Business: "",
         BusinessName: "",
         Aadhar: "",
-        isMediclaim: ""
+        isMediclaim: "",
+        MediclaimCompany:""
     }
     const [businessData, setBusinessData] = useState(initialData);
+    useEffect(()=>{
+        if(businessData.Business==='Trade'||businessData.Business==='Form'){
+            setBusiness(true)
+        }else{
+            setBusiness(false)
+        }
+
+        if(businessData.isMediclaim==='Yes'){
+            setMediclaim(true)
+        }else{
+            setMediclaim(false)
+        }
+
+    },[businessData])
 
     const [aadhar, setAadhar]=useState(false)
 
@@ -54,7 +72,7 @@ const BusinessInfo = (props) => {
         <>
             <Form noValidate validated={validated} onSubmit={handleSubmit} method='post'>
                 <Row className="mb-3">
-                    <Form.Group as={Col} md="6" controlId="Business">
+                    <Form.Group as={Col} md="4" controlId="Business">
                         <Form.Label>Business</Form.Label>
                         <Form.Check
                             required
@@ -84,10 +102,10 @@ const BusinessInfo = (props) => {
                             Please choose your Business.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3">
-                        <Form.Label>Business Name</Form.Label>
-                        <Form.Control
-                            required
+                    {business?
+                        <Form.Group as={Col} md="4">
+                        <Form.Label>Business/Form Name</Form.Label>
+                        <Form.Control                            
                             type="text"
                             name="BusinessName"
                             placeholder="Business Name"
@@ -97,10 +115,12 @@ const BusinessInfo = (props) => {
                         <Form.Control.Feedback type="invalid">
                             Please enter a valid business name.
                         </Form.Control.Feedback>
-                    </Form.Group>
+                    </Form.Group>                    
+                    :null}
+                    
                 </Row>
                 <Row className="mb-3">
-                <Form.Group as={Col} md="6" controlId="Business">
+                <Form.Group as={Col} md="4" controlId="Business">
                         <Form.Label>Do you have a mediclaim policy?</Form.Label>
                         <Form.Check
                             required
@@ -122,7 +142,22 @@ const BusinessInfo = (props) => {
                             Please choose an option.
                         </Form.Control.Feedback>
                     </Form.Group>
-                <Form.Group as={Col} md="3">
+                    {mediclaim?
+                        <Form.Group as={Col} md="4">
+                        <Form.Label>Mediclaim Company</Form.Label>
+                        <Form.Control                            
+                            type="text"
+                            name="MediclaimCompany"
+                            placeholder="Mediclaim Company"
+                            value={businessData.MediclaimCompany}
+                            onChange={handleChange}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Please enter a valid business name.
+                        </Form.Control.Feedback>
+                    </Form.Group>                    
+                    :null}
+                <Form.Group as={Col} md="4">
                         <Form.Label>Aadhar No</Form.Label>
                         <Form.Control
                             required
